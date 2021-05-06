@@ -10,6 +10,9 @@ public class BavardListener
     protected int id;
     protected String firstName, lastName;
 
+    protected MyWindow window;
+    protected Gestionnaire manager;
+
     // message's historical
     ArrayList<PapotageEvent> historical = new ArrayList<PapotageEvent>();
 
@@ -20,6 +23,7 @@ public class BavardListener
       this.lastName = lastName;
     }
 
+
     // getters & setters
 	public int getId() {
     /**
@@ -27,6 +31,16 @@ public class BavardListener
     */
 		  return id;
 	}
+
+
+  public void setWindow(MyWindow w){
+    this.window = w;
+  }
+
+
+  public void setManager(Gestionnaire g){
+    this.manager = g;
+  }
 
 
 	 public void setId(int id) {
@@ -71,6 +85,8 @@ public class BavardListener
 
   public void sendMessageToMe(PapotageEvent event){
     this.historical.add(event);
+    String texte = event.getAuthor().getFirstName() +" "+ event.getAuthor().getLastName() + ": " + event.getSubject();
+    this.window.getModel().addElement(texte);
   }
 
   public ArrayList<PapotageEvent> getHistorical(){

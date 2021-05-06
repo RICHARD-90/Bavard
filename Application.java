@@ -41,6 +41,7 @@ public class Application extends JFrame implements ActionListener{
   protected JTextField firstNameValue = new JTextField(20);
   protected JLabel lastName = new JLabel("Enter your lastName:");
   protected JTextField lastNameValue = new JTextField(20);
+
   protected JLabel label = new JLabel("Enter your id:");
   protected JTextField id = new JTextField(20);
 
@@ -51,6 +52,7 @@ public class Application extends JFrame implements ActionListener{
 
   // builder
   public Application(){
+    super();
     this.setTitle("ChatBook");
     this.setSize(320, 568);
     this.setLayout(new GridLayout(3, 1));
@@ -130,9 +132,17 @@ public class Application extends JFrame implements ActionListener{
 
   public void actionPerformed(ActionEvent arg0){
     if(arg0.getActionCommand().equals("buttonLogin"))
-      title.setText("Vous avez cliqué sur le bouton 1");
-    if(arg0. getActionCommand().equals("buttonSubmit"))
-      title.setText("Vous avez cliqué sur le bouton 2");
+      manager.connectMe( getIntFromTextField(id));
+
+    if(arg0. getActionCommand().equals("buttonSubmit")){
+      manager.addMe(getIntFromTextField(idInsValue), firstNameValue.getText(), lastNameValue.getText());
+      title.setText("Welcome to the chatbook \n\n\n Inscription reussie.");
+    }
   }
+
+  public static int getIntFromTextField(JTextField textField){
+        String text = textField.getText();
+        return Integer.parseInt(text);
+    }
 
 }

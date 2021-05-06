@@ -6,11 +6,15 @@ public class PapotageSource
   extends Bavard{
     // attributes
     // list of people with access to the message
-    ArrayList<BavardListener> listeners = new ArrayList<BavardListener>();
+    protected ArrayList<BavardListener> listeners = new ArrayList<BavardListener>();
 
     // builder
     public PapotageSource(){
       super();
+    }
+
+    public ArrayList<BavardListener> getListeners() {
+      return listeners;
     }
 
     public void addPapotageListener(BavardListener listener){
